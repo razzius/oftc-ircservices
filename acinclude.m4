@@ -25,7 +25,7 @@ AC_DEFUN([AX_CHECK_LIB_RUBY],[
     if test "$RUBY" = "no" ; then
       have_ruby="no"
     else
-      AC_SEARCH_LIBS([ruby_init],[ruby-2.7 ruby-2.5 ruby-2.3],[have_ruby="yes"],[have_ruby="no"])
+      AC_SEARCH_LIBS([ruby_init],[ruby-3.1 ruby-2.7 ruby-2.5 ruby-2.3],[have_ruby="yes"],[have_ruby="no"])
       if test "$have_ruby" = "yes" ; then
         ruby_so_name=[$($RUBY -r rbconfig -e 'print RbConfig::CONFIG["RUBY_SO_NAME"]')]
         ruby_cflags=$(pkg-config $ruby_so_name --cflags)
@@ -105,7 +105,7 @@ AC_DEFUN([AX_CHECK_LIB_PGSQL],
     ],
     [want_postgresql="yes"]
   )
-  
+
   POSTGRESQL_CFLAGS=""
   POSTGRESQL_LDFLAGS=""
   POSTGRESQL_VERSION=""
@@ -130,7 +130,7 @@ AC_DEFUN([AX_CHECK_LIB_PGSQL],
       POSTGRESQL_LDFLAGS="-L`$PG_CONFIG --libdir` -lpq"
 
       POSTGRESQL_VERSION=`$PG_CONFIG --version | sed -e 's#PostgreSQL ##'`
-      
+
       AC_DEFINE([HAVE_POSTGRESQL], [1],
         [Define to 1 if PostgreSQL libraries are available])
 
@@ -156,7 +156,7 @@ AC_DEFUN([AX_ARG_ENABLE_IOLOOP_MECHANISM],[
   AC_ARG_ENABLE([epoll],  [AC_HELP_STRING([--enable-epoll],  [Force epoll usage.])],  [desired_iopoll_mechanism="epoll"])
   AC_ARG_ENABLE([devpoll],[AC_HELP_STRING([--enable-devpoll],[Force devpoll usage.])],[desired_iopoll_mechanism="devpoll"])
   AC_ARG_ENABLE([rtsigio],[AC_HELP_STRING([--enable-rtsigio],[Force rtsigio usage.])],[desired_iopoll_mechanism="rtsigio"])
-  AC_ARG_ENABLE([poll],   [AC_HELP_STRING([--enable-poll],   [Force poll usage.])],   [desired_iopoll_mechanism="poll"]) 
+  AC_ARG_ENABLE([poll],   [AC_HELP_STRING([--enable-poll],   [Force poll usage.])],   [desired_iopoll_mechanism="poll"])
   AC_ARG_ENABLE([select], [AC_HELP_STRING([--enable-select], [Force select usage.])], [desired_iopoll_mechanism="select"])
   dnl }}}
   dnl {{{ preamble
@@ -300,22 +300,22 @@ AC_DEFUN([AX_ARG_DISABLE_SHARED_MODULES],[
 dnl {{{ ax_arg_with_nicklen
 AC_DEFUN([AX_ARG_WITH_NICKLEN],[
   AC_ARG_WITH([nicklen],[AC_HELP_STRING([--with-nicklen=<value>],[Set nickname length (default 9).])],[nicklen="$withval"],[nicklen="9"])
-  AC_DEFINE_UNQUOTED([NICKLEN],[($nicklen+1)],[Length of nicknames.]) 
+  AC_DEFINE_UNQUOTED([NICKLEN],[($nicklen+1)],[Length of nicknames.])
 ])dnl }}}
 dnl {{{ ax_arg_with_userlen
 AC_DEFUN([AX_ARG_WITH_USERLEN],[
   AC_ARG_WITH([userlen],[AC_HELP_STRING([--with-userlen=<value>],[Set username length (default 9).])],[userlen="$withval"],[userlen="9"])
-  AC_DEFINE_UNQUOTED([USERLEN],[($userlen+1)],[Length of nicknames.]) 
+  AC_DEFINE_UNQUOTED([USERLEN],[($userlen+1)],[Length of nicknames.])
 ])dnl }}}
 dnl {{{ ax_arg_with_hostlen
 AC_DEFUN([AX_ARG_WITH_HOSTLEN],[
   AC_ARG_WITH([hostlen],[AC_HELP_STRING([--with-hostlen=<value>],[Set username length (default 62).])],[hostlen="$withval"],[hostlen="62"])
-  AC_DEFINE_UNQUOTED([HOSTLEN],[($hostlen+1)],[Length of nicknames.]) 
+  AC_DEFINE_UNQUOTED([HOSTLEN],[($hostlen+1)],[Length of nicknames.])
 ])dnl }}}
 dnl {{{ ax_arg_with_topiclen
 AC_DEFUN([AX_ARG_WITH_TOPICLEN],[
   AC_ARG_WITH([topiclen],[AC_HELP_STRING([--with-topiclen=<value>],[Set topic length (default 300).])],[topiclen="$withval"],[topiclen="300"])
-  AC_DEFINE_UNQUOTED([TOPICLEN],[($topiclen+1)],[Length of topics.]) 
+  AC_DEFINE_UNQUOTED([TOPICLEN],[($topiclen+1)],[Length of topics.])
 ])dnl }}}
 dnl {{{ ax_arg_with_client_heap_size
 AC_DEFUN([AX_ARG_WITH_CLIENT_HEAP_SIZE],[
