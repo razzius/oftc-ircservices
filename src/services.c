@@ -121,7 +121,7 @@ check_pidfile(const char *filename)
 static void
 print_startup(int pid)
 {
-  printf("oftc-ircservices: version %s\n", VERSION); 
+  printf("oftc-ircservices: version %s\n", VERSION);
   printf("oftc-ircservices: pid %d\n", pid);
   printf("oftc-ircservices: running in %s mode from %s\n",
          ServicesState.foreground ? "foreground" : "background", DPATH);
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
 #ifndef _WIN32
   if (geteuid() == 0)
   {
-    fprintf(stderr, "Running IRC services is root is not recommended.");
+    fprintf(stderr, "Running IRC services as root is not recommended.");
     return 1;
   }
   setup_corefile();
@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
   memset(&ServicesInfo, 0, sizeof(ServicesInfo));
   memset(&ServicesState, 0, sizeof(ServicesState));
 
-  ServicesState.configfile = CPATH; 
+  ServicesState.configfile = CPATH;
   ServicesState.logfile    = LPATH;
   ServicesState.pidfile    = PPATH;
   ServicesState.fully_connected = 0;
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
   iosend_cb = register_callback("iosend", iosend_default);
 
   OpenSSL_add_all_digests();
- 
+
   init_interface();
   check_pidfile(ServicesState.pidfile);
   init_log(ServicesState.logfile);
@@ -241,11 +241,11 @@ int main(int argc, char *argv[])
   SetServer(&me);
   SetMe(&me);
   dlinkAdd(&me, &me.node, &global_client_list);
-  
+
   read_services_conf(TRUE);
   init_db();
   init_uid();
- 
+
 #ifdef HAVE_PYTHON
   init_python();
 #endif
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
 #endif
 
   boot_modules(1);
-  
+
   connect_server();
 
   for(;;)
@@ -359,7 +359,7 @@ services_die(const char *msg, int rboot)
 
   if(me.uplink != NULL)
     MyFree(me.uplink->server);
- 
+
   cleanup_client();
   cleanup_channel();
   cleanup_interface();
